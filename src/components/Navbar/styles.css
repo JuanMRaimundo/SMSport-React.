@@ -1,0 +1,17 @@
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	color: black;
+}
+.navbar ul li {
+	list-style: none;
+}
+.logo-icon {
+	width: 300px;
+	height: 250px;
+}
+.nav-link {
+	list-style: none;
+}
