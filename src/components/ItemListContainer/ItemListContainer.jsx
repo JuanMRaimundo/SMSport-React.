@@ -28,7 +28,7 @@ function ItemListContainer() {
 	}, []);
 
 	return (
-		<Grid className="list">
+		<Grid className="list" container spacing={2}>
 			{productos.length > 0 ? (
 				productos.map((prod) => (
 					<Grid item xs={12} md={6} lg={3} key={prod.id}>

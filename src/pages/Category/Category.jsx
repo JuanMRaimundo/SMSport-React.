@@ -50,7 +50,7 @@ function Category() {
 			<LinearProgress color="warning" className="progres" />
 		</div>
 	) : (
-		<Grid className="list">
+		<Grid className="list" container spacing={2}>
 			{productos.map((prod) => (
 				<Grid item xs={12} md={6} lg={3} key={prod.id}>
 					<Card data={prod} stock={5} />
