@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { db } from "../../firebase/firebaseConfig.js";
 //COMPONENTS
 import Card from "../Card/Card.jsx";
-import { Grid, LinearProgress } from "@mui/material";
+import { Grid } from "@mui/material";
+import LoadingSpinner from "../../utils/LoadingSpinner";
 import { collection, query, getDocs } from "firebase/firestore";
 //STYLES
 import "./styles.css";
@@ -36,7 +37,7 @@ function ItemListContainer() {
 					</Grid>
 				))
 			) : (
-				<LinearProgress color="warning" />
+				<LoadingSpinner />
 			)}
 		</Grid>
 	);

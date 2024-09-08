@@ -1,42 +1,35 @@
-import { useState, createContext } from "react";
+import { createContext, useReducer } from "react";
+import { cartReducer } from "../reducers/CartReducer";
 
 export const CartContext = createContext();
 
+const initialCartState = [];
+
 export const CartProvider = ({ children }) => {
-	const [cart, setCart] = useState([]);
-	//Verifica si está en el carro
-	const isInCart = (id) => {
-		return cart.some((x) => x.id === id);
-	};
-	//Agrega al carro de compras y se le agrega una propiedad cantidad
+	const [cart, dispatch] = useReducer(cartReducer, initialCartState);
+
 	const addToCart = (item, quantity) => {
-		if (isInCart(item.id)) {
-			let pos = cart.findIndex((x) => x.id === item.id);
-			cart[pos].quantity += quantity;
-			setCart([...cart]);
-		} else {
-			setCart([...cart, { ...item, quantity: quantity }]);
-		}
+		dispatch({ type: "ADD_TO_CART", payload: { ...item, quantity } });
 	};
 
-	const removeFromCart = (itemId) => {
-		const products = cart.filter((item) => item.id !== itemId);
-		setCart(products);
+	const removeFromCart = (id) => {
+		dispatch({ type: "REMOVE_FROM_CART", payload: id });
+	};
+
+	const updateQuantity = (id, quantity) => {
+		dispatch({ type: "UPDATE_QUANTITY", payload: { id, quantity } });
 	};
 
 	const clearCart = () => {
-		setCart([]);
+		dispatch({ type: "CLEAR_CART" });
 	};
 
 	const cartTotal = () => {
-		return cart.reduce((total, item) => (total += item.quantity), 0);
+		return cart.reduce((total, item) => total + item.quantity, 0);
 	};
 
 	const sumTotal = () => {
-		return cart.reduce(
-			(total, item) => (total += item.quantity * item.precio),
-			0
-		);
+		return cart.reduce((total, item) => total + item.quantity * item.precio, 0);
 	};
 
 	return (
@@ -45,6 +38,7 @@ export const CartProvider = ({ children }) => {
 				cart,
 				addToCart,
 				removeFromCart,
+				updateQuantity,
 				clearCart,
 				cartTotal,
 				sumTotal,

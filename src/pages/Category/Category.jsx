@@ -6,7 +6,8 @@ import { useParams } from "react-router-dom";
 import { db } from "../../firebase/firebaseConfig.js";
 //COMPONENTS
 import Card from "../../components/Card/Card.jsx";
-import { LinearProgress, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
+import LoadingSpinner from "../../utils/LoadingSpinner";
 import { collection, query, getDocs } from "firebase/firestore";
 //STYLES
 import "./styles.css";
@@ -46,9 +47,7 @@ function Category() {
 	}, [categoryID]);
 
 	return isLoading ? (
-		<div>
-			<LinearProgress color="warning" className="progres" />
-		</div>
+		<LoadingSpinner />
 	) : (
 		<Grid className="list" container spacing={2}>
 			{productos.map((prod) => (
