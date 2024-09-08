@@ -36,10 +36,10 @@ function NavbarIndex() {
 									Inicio
 								</Link>
 								<Link className="nav-link" to="/Contact">
-									Contact
+									Contacto
 								</Link>
 								<NavDropdown
-									title="Category"
+									title="Categorias"
 									id="navbarScrollingDropdown"
 									className="dropdown-conteiner"
 								>

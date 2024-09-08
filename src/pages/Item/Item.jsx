@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import "./styles.css";
 //DATA
 
 import { db } from "../../firebase/firebaseConfig.js";
@@ -43,11 +43,15 @@ function Item() {
 
 	return (
 		<>
-			<div className="list">
+			<div className="item-selected">
 				{producto ? (
 					<>
-						<Card data={producto} stock={5} />
-						<ItemCount stock={5} product={producto} />
+						<Card className="card-selected" data={producto} stock={5} />
+						<ItemCount
+							className="itemCount-selected"
+							stock={5}
+							product={producto}
+						/>
 					</>
 				) : (
 					<div>

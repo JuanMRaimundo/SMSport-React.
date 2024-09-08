@@ -5,7 +5,10 @@ function Card({ data }) {
 		return "no se encontró producto"; // No renderizar nada si data es undefined
 	}
 	return (
-		<div className="card contador" style={{ width: "18rem" }}>
+		<div
+			className="card contador"
+			style={{ width: "18rem", marginLeft: "auto" }}
+		>
 			<Link to={`/item/${data.id}`}>
 				<img className="card-img-top" src={data.img} alt="Card image cap" />
 			</Link>

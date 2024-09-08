@@ -1,9 +1,24 @@
 .counter {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: center; /* Cambiado para centrar los elementos */
 	justify-content: center;
+	max-width: 400px; /* Ajustar el tamaño del contenedor para que no se vea tan ancho */
+	margin: 0 auto; /* Centrar horizontalmente */
 }
-.alert.alert-secondary {
+.counter button {
+	margin: 5px; /* Aumentar el espaciado entre los botones */
+}
+.counter .alert.alert-secondary {
+	margin-top: 10px; /* Más espaciado con respecto a los botones */
+}
+.btn.btn-dark {
+	background-color: #ff9900; /* Color llamativo */
+	border: none;
+	color: white;
+	font-size: 1.1em;
+}
+/* .alert.alert-secondary {
 	margin-top: 3%;
 }
+ */

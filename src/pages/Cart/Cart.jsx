@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useState } from "react";
 //COMPONENTS
 import { Link } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";
@@ -6,10 +6,28 @@ import Trash from "../../assets/icons/trash-icon.png";
 import { Button, Table } from "react-bootstrap";
 //STYLES
 import "./styles.css";
+import ModalConfirm from "../../utils/ModalConfirm";
 
 function Cart() {
 	const { cart, cartTotal, removeFromCart, sumTotal } = useContext(CartContext);
+	const [showModal, setShowModal] = useState(false);
+	const [selectedItem, setSelectedItem] = useState(null);
 	const total = useMemo(() => sumTotal(), [cart]);
+
+	const handleShowModal = (itemId) => {
+		setSelectedItem(itemId);
+		setShowModal(true);
+	};
+
+	const handleCloseModal = () => {
+		setShowModal(false);
+		setSelectedItem(null);
+	};
+
+	const handleConfirmRemove = () => {
+		removeFromCart(selectedItem);
+		handleCloseModal();
+	};
 
 	if (cartTotal() === 0) {
 		return (
@@ -50,7 +68,7 @@ function Cart() {
 								<img
 									src={Trash}
 									alt="Eliminar"
-									onClick={() => removeFromCart(item.id)}
+									onClick={() => handleShowModal(item.id)}
 								/>
 							</td>
 							<td>${item.precio * item.quantity}</td>
@@ -68,6 +86,12 @@ function Cart() {
 			<Link to={"/Checkout"} className="btn-compra">
 				<Button className="btn btn-warning">Comprar</Button>
 			</Link>
+			<ModalConfirm
+				show={showModal}
+				handleClose={handleCloseModal}
+				handleConfirm={handleConfirmRemove}
+				message="¿Estás seguro de que deseas eliminar este producto del carrito?"
+			/>
 		</div>
 	);
 }

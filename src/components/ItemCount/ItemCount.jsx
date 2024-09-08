@@ -5,6 +5,7 @@ import { Button } from "@mui/material";
 
 //STYLES
 import "./styles.css";
+import { Add, Remove } from "@mui/icons-material";
 
 export const ItemCount = ({ product }) => {
 	const { cart, addToCart, removeFromCart, clearCart, cartTotal } =
@@ -55,7 +56,7 @@ export const ItemCount = ({ product }) => {
 				onClick={decrement}
 				disabled={count === 0}
 			>
-				-
+				<Remove />
 			</button>
 			<div className="alert alert-secondary">{count}</div>
 			<button
@@ -63,7 +64,7 @@ export const ItemCount = ({ product }) => {
 				onClick={increment}
 				disabled={count === initialStock}
 			>
-				+
+				<Add />
 			</button>
 			<button
 				onClick={addToCartHandler}
